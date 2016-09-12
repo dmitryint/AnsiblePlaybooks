@@ -1,0 +1,9 @@
+---
+- name: get the latest ansible-playbooks
+  hosts: localhost
+  connection: local
+  remote_user: ansible
+  sudo: yes
+ 
+  roles:
+    - get-playbook

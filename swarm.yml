@@ -1,0 +1,9 @@
+---
+- name: Install docker-engine
+  hosts: manager,worker
+  remote_user: ansible
+  sudo: yes
+  gather_facts: yes
+
+  roles:
+    - docker-swarm
