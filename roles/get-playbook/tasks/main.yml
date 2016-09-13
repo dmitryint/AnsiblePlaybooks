@@ -1,0 +1,9 @@
+---
+- name: get the latest ansible playbook 
+  git: repo={{ git_url }} dest=/etc/ansible/AnsiblePlaybooks update=yes clone=yes force=yes
+
+- name: create the azure directory 
+  file: path={{ ansible_env.HOME }}/.azure state=directory
+
+- name: copy the azure crediantials files 
+  template: src=credentials.j2 dest={{ ansible_env.HOME }}/.azure/credentials

@@ -1,0 +1,10 @@
+---
+- name: Install docker-engine
+  hosts: worker,manager
+  remote_user: ansible
+  sudo: yes
+  gather_facts: yes
+
+  roles:
+    - docker-engine
+

@@ -1,0 +1,6 @@
+---
+
+docker_swarm_addr: "{{ ansible_default_ipv4['address'] }}"
+docker_swarm_port: 2377
+
+
