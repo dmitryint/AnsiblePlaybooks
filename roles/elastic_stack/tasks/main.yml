@@ -1,0 +1,71 @@
+---
+
+- name: Install Git
+  apt: name=git state=present
+
+- name: create directory 
+  file: path={{ ansible_env.HOME }}/NavigatorDataStore state=directory
+
+- name: Get dockerfiles from git repository 
+  git: repo=https://{{ githubuser }}:{{ githubpassword }}@github.com/stuartshay/NavigatorDataStore.git dest={{ ansible_env.HOME }}/NavigatorDataStore clone=yes force=yes
+
+- name: build the mongo image
+  command: docker build -t navigatorelastic_mongo1 . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/mongo/
+
+- name: build the mongosetup image
+  command: docker build -t navigatorelastic_mongosetup . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/mongosetup/
+
+- name: build the elasticsearch image
+  command: docker build -t navigatorelastic_elasticsearch . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/elasticsearch/
+
+- name: build the kibana image
+  command: docker build -t navigatorelastic_kibana . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/kibana
+
+- name: checking network status
+  shell: docker network ls
+  changed_when: False
+  register: swarm_network
+  when: inventory_hostname == groups['manager'][0]
+
+- name: Create an overlay network 
+  command: docker network create {{ network_name }} -d overlay
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_network.stdout.find('{{ network_name }}') == -1"
+
+- name: check service status
+  shell: docker service ls
+  changed_when: False
+  register: swarm_service
+  when: inventory_hostname == groups['manager'][0]
+
+- name: Run the mongo3 conatiner
+  command: docker service create --name mongo3 --network {{ network_name }} -p 27018:27017 -e IS_PRIMARY="true"  -p 28018:28017 navigatorelastic_mongo1
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_service.stdout.find('mongo3') == -1"
+
+- name: Run the mongo2 conatiner on manager node
+  command: docker service create --name mongo2 --network {{ network_name }} -p 27019:27017 -p 28019:28017 navigatorelastic_mongo1
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_service.stdout.find('mongo2') == -1"
+
+- name: Run the mongo1 conatiner on manager node
+  command: docker service create --name mongo1 --network {{ network_name}} -e es_server="elasticsearch:9200"  -e mongo_tables=navigator.attractions -p 27017:27017 -p 28017:28017 navigatorelastic_mongo1
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_service.stdout.find('mongo1') == -1"
+ 
+- name: Run the mongosetup conatiner to create replaction
+  command: docker service create --name mongosetup --network {{ network_name }} navigatorelastic_mongosetup
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_service.stdout.find('mongosetup') == -1"
+ 
+- name: Run the elasticsearch conatiner on manager node
+  command: docker service create --name elasticsearch --network {{ network_name }} -p 9200:9200 navigatorelastic_elasticsearch
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_service.stdout.find('elasticsearch') == -1"
+ 
+- name: Run the kibana conatiner on manager node
+  command: docker service create --name kibana -e ELASTICSEARCH_URL="http://elasticsearch:9200" --network {{ network_name }} -p 5601:5601 navigatorelastic_kibana
+  when: "inventory_hostname == groups['manager'][0]
+    and swarm_service.stdout.find('kibana') == -1"
+
+

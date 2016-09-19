@@ -1,0 +1,11 @@
+---
+- name: elastic mongo kibana on swarm
+  hosts: manager,worker
+  remote_user: ansible
+  gather_facts: yes
+
+  roles:
+    - elastic_stack
+
+
+
