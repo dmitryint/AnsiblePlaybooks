@@ -1,6 +1,6 @@
 # Ansible Playbook For Installation of Docker Swarm mode and MongoDB, ElasticSearch and Kibana cluster
 
-Ansible playbook to install docker engine 1.12 and runs a swarm cluster of MongoDB, Elasticsearch and Kibana. This ansible playbook uses dynamic inventory to get the VM's info from Microsoft Azure using tags (Manager, Worker). 
+Ansible playbook to install docker engine 1.12 and runs a swarm cluster of MongoDB, Elasticsearch, and Kibana. This ansible playbook uses dynamic inventory to get the VM's info from Microsoft Azure using tags (Manager, Worker). 
 
 ### Prerequisites
 - Ansible 2.1.1
@@ -22,14 +22,14 @@ Change the /roles/get-playbook/vars/main file in the playbook with your details.
 
 For more ansible vault commands refer http://docs.ansible.com/ansible/playbooks_vault.html
 
-Credientials are encyrpted in ansible playbook using the Ansible vault. You need to provide the vault password to run the playbook.
+Credentials are encrypted in ansible playbook using the Ansible vault. You need to provide the vault password to run the playbook.
 
 ##### Docker Engine 1.12
 To install the docker-engine on ubuntu 16.04 manager and worker nodes 
 
 ```sudo ansible-playbook -i azure_rm.py engine.yml```
 
-azure_rm.py file would fetch the dyanamic inevntory list from Azure according to the tags given 
+azure_rm.py file would fetch the dynamic inventory list from Azure according to the tags given 
 
 ##### Docker Swarm 
 To install and configure docker in Swarm mode 
@@ -40,7 +40,7 @@ To check the docker swarm cluster status ssh into the manager and worker nodes a
 
 ```docker info```
 
-To check manager status use the below comamnd on manager
+To check manager status use the below command on manager
 
 ``` docker node ls ```
 
@@ -55,7 +55,7 @@ To check all the services running in the swarm cluster
 
 ```docker service ps``` 
 
-It will show all the running conatiner along with the repliaction factor of each container 
+It will show all the running container along with the replication factor of each container 
 
 To check status of a specific service 
 
