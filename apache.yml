@@ -1,0 +1,16 @@
+---
+- name: Install apache webserver
+  hosts: webserver
+  remote_user: ansible
+  sudo: yes
+
+  roles:
+    - apache
+
+
+
+
+
+
+
+
