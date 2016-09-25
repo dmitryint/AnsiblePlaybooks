@@ -1,6 +1,6 @@
 ### group_vars
 
-all
+all.yml
 
 ````
 ---
@@ -8,5 +8,6 @@ anisble_connection: ssh
 ansible_ssh_user: <username>
 ansible_ssh_pass: <password>
 ````
+
 
 
