@@ -1,4 +1,4 @@
-### group_vars
+### vars
 
 main.yml
 
