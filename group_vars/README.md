@@ -1,6 +1,6 @@
 ### group_vars
 
-all.yml
+all
 
 ````
 ---
