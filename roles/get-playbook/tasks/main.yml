@@ -1,6 +1,7 @@
 ---
 - name: get the latest ansible playbook 
   git: repo={{ git_url }} dest=/etc/ansible/AnsiblePlaybooks update=yes clone=yes force=yes
+  sudo: yes
 
 - name: create the azure directory 
   file: path={{ ansible_env.HOME }}/.azure state=directory

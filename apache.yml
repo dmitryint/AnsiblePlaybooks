@@ -1,7 +1,7 @@
 ---
 - name: Install apache webserver
   hosts: webserver
-  remote_user: ansible
+  remote_user: Navigator
   sudo: yes
 
   roles:

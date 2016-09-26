@@ -1,9 +1,11 @@
 ---
-- name: Install docker-engine
+- name: elastic mongo kibana on swarm
   hosts: manager,worker
   remote_user: Navigator
-  sudo: yes
   gather_facts: yes
 
   roles:
-    - docker-swarm
+    - elastic_stack
+
+
+
