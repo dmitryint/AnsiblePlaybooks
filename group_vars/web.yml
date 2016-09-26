@@ -1,0 +1,6 @@
+---
+ansible_user: Navigator
+ansible_password: Navigator2016
+ansible_port: 5985
+ansible_connection: winrm
+ansible_winrm_cert_validation: ignore
