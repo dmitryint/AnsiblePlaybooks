@@ -2,7 +2,6 @@
 - name: get the latest ansible-playbooks
   hosts: localhost
   connection: local
-  remote_user: ansible
  
   roles:
     - get-playbook

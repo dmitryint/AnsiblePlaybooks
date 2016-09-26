@@ -1,7 +1,7 @@
 ---
 - name: elastic mongo kibana on swarm
   hosts: manager,worker
-  remote_user: ansible
+  remote_user: Navigator
   gather_facts: yes
 
   roles:

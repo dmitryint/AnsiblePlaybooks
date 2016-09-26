@@ -1,7 +1,7 @@
 ---
 - name: Install docker-engine
   hosts: manager,worker
-  remote_user: ansible
+  remote_user: Navigator
   sudo: yes
   gather_facts: yes
 
