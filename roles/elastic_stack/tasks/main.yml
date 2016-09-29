@@ -7,7 +7,7 @@
   file: path={{ ansible_env.HOME }}/NavigatorDataStore state=directory
 
 - name: Get dockerfiles from git repository 
-  git: repo=https://{{ githubuser }}:{{ githubpassword }}@github.com/stuartshay/NavigatorDataStore.git dest={{ ansible_env.HOME }}/NavigatorDataStore clone=yes force=yes
+  git: repo=https://{{ githubuser }}:{{ access_token }}@github.com/stuartshay/NavigatorDataStore.git dest={{ ansible_env.HOME }}/NavigatorDataStore clone=yes force=yes
 
 - name: build the mongo image
   command: docker build -t navigatorelastic_mongo1 . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/mongo/
