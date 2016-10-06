@@ -1,0 +1,11 @@
+---
+- name: install webserver
+  win_feature:
+    name: "Web-Server"
+    state: present
+    restart: yes
+
+- name: website-template
+  template:
+    src: index.html.j2
+    dest: "C:\\inetpub\\wwwroot\\index.html"

@@ -1,0 +1,5 @@
+---
+- name: install pacakges in windows 
+  hosts: window
+  roles:
+    - win-webserver
