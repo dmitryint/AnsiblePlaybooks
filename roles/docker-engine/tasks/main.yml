@@ -31,3 +31,17 @@
     name: python-docker
     state: present
 
+- name: download the binary file
+  get_url:
+    url: https://github.com/Azure/azurefile-dockervolumedriver/releases/download/v0.5.1/azurefile-dockervolumedriver
+    dest: /usr/bin/
+    mode: 0555
+
+- name: copy the azurefile-dockervolumedriver file
+  template: src=azurefile-dockervolumedriver.j2 dest=/etc/default/azurefile-dockervolumedriver
+
+- name: copy the azazurefile-dockervolumedriver.service file
+  template: src=azurefile-dockervolumedriver.service.j2 dest=/etc/systemd/system/azurefile-dockervolumedriver.service
+
+- name: start the docker volume driver
+  service: name=azurefile-dockervolumedriver state=started enabled=yes
