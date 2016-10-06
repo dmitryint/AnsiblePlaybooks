@@ -11,15 +11,19 @@
 
 - name: build the mongo image
   command: docker build -t navigatorelastic_mongo1 . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/mongo/
+  when: "'worker' in group_names"
 
 - name: build the mongosetup image
   command: docker build -t navigatorelastic_mongosetup . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/mongosetup/
+  when: "'worker' in group_names"
 
 - name: build the elasticsearch image
   command: docker build -t navigatorelastic_elasticsearch . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/elasticsearch/
+  when: "'worker' in group_names"
 
 - name: build the kibana image
   command: docker build -t navigatorelastic_kibana . chdir={{ ansible_env.HOME }}/NavigatorDataStore/navigator-elastic/Dockerfiles/kibana
+  when: "'worker' in group_names"
 
 - name: checking network status
   shell: docker network ls
