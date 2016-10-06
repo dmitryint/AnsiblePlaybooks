@@ -53,3 +53,9 @@
     and docker_info.stdout.find('Swarm: pending') == -1
     and 'manager' in group_names
     and inventory_hostname != groups['manager'][0]"
+    
+- name: Drain the manager node in swarm cluster
+  shell: docker node update --availability drain manager1
+  when: inventory_hostname == groups['manager'][0]
+
+
