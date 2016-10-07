@@ -3,8 +3,16 @@
   git: repo={{ git_url }} dest=/etc/ansible/AnsiblePlaybooks update=yes clone=yes force=yes
   sudo: yes
 
-- name: create the azure directory 
+- name: create the azure directory
   file: path={{ ansible_env.HOME }}/.azure state=directory
 
 - name: copy the azure crediantials files 
   template: src=credentials.j2 dest={{ ansible_env.HOME }}/.azure/credentials
+
+- name: update the editor env variable to nano
+  lineinfile: dest=/etc/environment line="EDITOR=nano"
+
+- name: remove old ssh keys in manager node
+  file: path=/root/.ssh/known_hosts state=absent
+
+
