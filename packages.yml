@@ -1,0 +1,7 @@
+---
+- name: Install the packages
+  hosts: worker
+  remote_user: Navigator
+
+  roles:
+    - extra-packages

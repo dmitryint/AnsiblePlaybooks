@@ -1,0 +1,7 @@
+---
+- name: Install docker-engine
+  hosts: worker
+  remote_user: Navigator
+
+  roles:
+    - cleanup

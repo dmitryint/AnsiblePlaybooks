@@ -3,8 +3,26 @@
   git: repo={{ git_url }} dest=/etc/ansible/AnsiblePlaybooks update=yes clone=yes force=yes
   sudo: yes
 
-- name: create the azure directory 
+- name: create the azure directory
   file: path={{ ansible_env.HOME }}/.azure state=directory
 
 - name: copy the azure crediantials files 
   template: src=credentials.j2 dest={{ ansible_env.HOME }}/.azure/credentials
+
+- name: update the editor env variable to nano
+  lineinfile: dest=/etc/environment line="EDITOR=nano"
+
+- name: remove old ssh keys in manager node
+  file: path=/root/.ssh/known_hosts state=absent
+
+- name: download git prompt script
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    dest: /home/{{ ansible_ssh_user }}/.git-prompt.sh
+
+- name: add the file source to bashrc
+  blockinfile:
+    dest: /home/{{ ansible_ssh_user }}/.bashrc
+    block: |
+     source ~/.git-prompt.sh
+     PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '

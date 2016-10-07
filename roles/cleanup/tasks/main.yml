@@ -1,0 +1,18 @@
+---
+- name: Check unused container status
+  shell: docker ps -aq
+  changed_when: False
+  register: container_status
+
+- name: remove unused docker conatiners
+  shell: docker rm $(docker ps -aq)
+  when: container_status.stdout != ""
+
+- name: Check docker images status
+  shell: docker images -q
+  changed_when: False
+  register: image_status
+
+- name: remove the docker images
+  shell: docker rmi $(docker images -q)
+  when: image_status.stdout != ""
