@@ -1,0 +1,7 @@
+---
+- name: Application Server Installation Packages
+  hosts: appserver
+  remote_user: Navigator
+
+  roles:
+    - appserver
