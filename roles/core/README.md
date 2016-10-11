@@ -2,5 +2,6 @@
 
 
 ````
-sudo ansible-playbook -i azure_rm.py appserver.yml --ask-vault-pass
+sudo ansible-playbook -i azure_rm.py core.yml --ask-vault-pass
 ````
+
