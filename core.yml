@@ -5,6 +5,6 @@
   sudo: yes
 
   roles:
-    - core
     - dotnet-core
-    
+    - core
+
