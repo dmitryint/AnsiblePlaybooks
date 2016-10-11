@@ -22,7 +22,6 @@
 - name: Install list of yoman packages
   npm: name={{item}} global=yes
   with_items:
-       - yoman
        - generator-aspnet
 
 
