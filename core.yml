@@ -1,8 +1,8 @@
 ---
 - name: Application Server Installation Packages
-  hosts: core
+  hosts: appserver
   remote_user: Navigator
   sudo: yes
 
   roles:
-    - appserver
+    - core
