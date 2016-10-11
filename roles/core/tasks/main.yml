@@ -1,8 +1,17 @@
 ---
 
-- name: Install Apache  
-  apt: name=apache2 update_cache=yes state=present
+- name: Add the key
+  apt_key: keyserver=apt-mo.trafficmanager.net id=417A0893
 
-- name: ensure apache is installed and running 
-  service: name=apache2 state=started enabled=yes
+- name: install .NET Core SDK
+  apt: name=dotnet-dev-1.0.0-preview2-003131 update_cache=yes
+
+- name: install nodejs
+  apt: name=nodejs state=present
+
+- name: install npm
+  apt: name=npm state=present
+
+- name: install sdk for node
+  npm: name=azure global=yes state=present
 
