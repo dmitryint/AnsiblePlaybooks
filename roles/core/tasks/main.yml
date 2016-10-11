@@ -1,5 +1,6 @@
 ---
 
+
 - name: Add the key
   apt_key: keyserver=apt-mo.trafficmanager.net id=417A0893
 
@@ -10,4 +11,14 @@
   apt: name=npm state=present
 
 - name: install gulp
-- npm: name=gulp global=yes
+  npm: name=gulp global=yes
+
+- name: Install list npm of packages
+  npm: name={{item}} global=yes
+  with_items:
+       - gulp-cli
+       - typings
+       - typescript
+       - ts-node
+
+
