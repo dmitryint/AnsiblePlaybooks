@@ -1,5 +1,16 @@
 ---
 
+- name: download git prompt script
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    dest: /home/{{ ansible_ssh_user }}/.git-prompt.sh
+
+- name: add the file source to bashrc
+  blockinfile:
+    dest: /home/{{ ansible_ssh_user }}/.bashrc
+    block: |
+     source ~/.git-prompt.sh
+     PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 - name: Add the key
   apt_key: keyserver=apt-mo.trafficmanager.net id=417A0893
@@ -19,10 +30,6 @@
        - typescript
        - ts-node
 
-- name: Install list of yoman packages
-  npm: name={{item}} global=yes
-  with_items:
-       - generator-aspnet
 
 
 
