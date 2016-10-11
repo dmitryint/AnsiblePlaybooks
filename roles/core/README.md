@@ -1,5 +1,4 @@
-## Application Server Playbook 
-
+## Core Application Server Playbook 
 
 ````
 sudo ansible-playbook -i azure_rm.py core.yml --ask-vault-pass
@@ -15,5 +14,7 @@ dotnet --version
 List npm packages 
 ````
 npm list -g --depth=0
+
+npm list -g 
 ````
 
