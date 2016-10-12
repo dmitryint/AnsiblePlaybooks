@@ -6,5 +6,6 @@
 
   roles:
     - dotnet-core
+    - geerlingguy.nodejs
     - core
 
