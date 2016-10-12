@@ -1,5 +1,10 @@
 ---
 
+- name: Install list of npm packages
+  npm: name={{item}} global=yes
+  with_items:
+       - npm3
+
 - name: Install Azure SDK for node
   npm: name=azure global=yes state=present
 
