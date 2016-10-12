@@ -1,0 +1,6 @@
+---
+
+tasks:
+  - include: base.yml
+  - include: git-prompt.yml
+  - include: dotnet-core.yml
