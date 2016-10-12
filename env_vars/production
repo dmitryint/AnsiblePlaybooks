@@ -1,0 +1,6 @@
+---
+
+# Production Env Vars
+
+# Git settings.
+git_repo: git@github.com:scotch-io/node-todo.git
