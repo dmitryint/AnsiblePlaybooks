@@ -5,7 +5,7 @@
   sudo: yes
 
   roles:
-    - dotnet-core
+    - base
     - nodejs
     - core
 
