@@ -12,24 +12,16 @@
      source ~/.git-prompt.sh
      PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
+- name: Install Azure SDK for node
+  npm: name=azure global=yes state=present
+
+
+
 
 - name: Install nodejs
   apt: name=nodejs state=present
 
-- name: Install npm
-  apt: name=npm state=present
 
-- name: Install Azure SDK for node
-  npm: name=azure global=yes state=present
-
-- name: Install list of npm packages
-  npm: name={{item}} global=yes
-  with_items:
-       - gulp
-       - gulp-cli
-       - typings
-       - typescript
-       - ts-node
 
 
 
