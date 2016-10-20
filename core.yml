@@ -17,4 +17,3 @@
     - docker-engine
     - docker-compose
     docker_compose_version: 1.8.1
-
