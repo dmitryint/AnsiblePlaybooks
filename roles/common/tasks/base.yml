@@ -13,13 +13,10 @@
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=latest
   with_items:
     - build-essential
-    - python-pip
-    - python-httplib2
     - ntp
     - git
     - tree
   tags: packages
-
 
 - name: Install python packages
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=latest
