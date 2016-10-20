@@ -1,0 +1,7 @@
+---
+ansible_unit_test: false
+prefix_dir: ""
+docker_compose_arch: Linux-x86_64
+docker_compose_version: latest
+docker_compose_release_url: "https://github.com/docker/compose/releases/download"
+docker_compose_bin: /usr/local/bin
