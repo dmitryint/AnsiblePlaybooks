@@ -5,6 +5,7 @@
   with_items:
        - npm3
        - bower 
+       - grunt
        - grunt-cli
 
 - name: Install Azure SDK for node
