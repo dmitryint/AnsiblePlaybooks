@@ -20,4 +20,6 @@
 
 
 - name: Install dotnet core SDK
-  apt: name=dotnet-dev-1.0.0-preview2-003121 state=present cache_valid_time=86400
+  apt: name=dotnet-dev-1.0.0-preview2-003131 state=present cache_valid_time=86400
+  
+  
