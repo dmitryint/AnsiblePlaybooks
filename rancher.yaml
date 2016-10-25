@@ -1,0 +1,19 @@
+---
+- name: Install Rancher server
+  hosts: manager
+  remote_user: Navigator
+  sudo: yes
+  gather_facts: yes
+
+  roles:
+    - rancher
+    - rancher_agent
+
+- name: Install Rancher agents
+  hosts: worker
+  remote_user: Navigator
+  sudo: yes
+  gather_facts: yes
+
+  roles:
+    - rancher_agent
